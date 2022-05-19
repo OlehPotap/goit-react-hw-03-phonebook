@@ -33,6 +33,7 @@ class Form extends React.Component {
   };
 
   render() {
+    const { name, number } = this.state;
     return (
       <div className={styles.box}>
         <form
@@ -48,7 +49,7 @@ class Form extends React.Component {
             pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
             title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
             required
-            value={this.state.name}
+            value={name}
             onChange={this.handleChange}
           />
           <label htmlFor="number">Number</label>
@@ -59,7 +60,7 @@ class Form extends React.Component {
             pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
             title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
             required
-            value={this.state.number}
+            value={number}
             onChange={this.handleChange}
           />
           <button type="submit" className={styles.button}>

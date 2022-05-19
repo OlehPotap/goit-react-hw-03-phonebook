@@ -56,23 +56,6 @@ class App extends React.Component {
   //   console.log(FilteredList)
   //  }
 
-  componentDidMount(){
-    const contacts = localStorage.getItem('contacts')
-    const parsedContacts = JSON.parse(contacts)
-    if(parsedContacts){
-      this.setState({
-        contacts: parsedContacts,
-      })
-    }
-  }
-
-  componentDidUpdate(prevProps, prevState){
-    const { contacts } = this.state
-    if( contacts.length !== prevState.contacts.length){
-      localStorage.setItem('contacts', JSON.stringify(contacts))
-    }
-  }
-
   render() {
     return (
       <Section>
