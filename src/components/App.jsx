@@ -55,17 +55,29 @@ class App extends React.Component {
     }
   };
 
-  deleteContact = id => {
+  deleteContact = name => {
     this.setState(({ contacts }) => {
-      return { contacts: contacts.filter(e => e.id !== id) };
+      return { contacts: contacts.filter(e => e.name.toLowerCase() !== name.toLowerCase()) };
     });
   };
 
-  getFilteredData = data => {
+  setFilteredData = data => {
     this.setState(() => {
       return { filter: data };
     });
   };
+
+  getfilteredData () {
+    const { filter, contacts } = this.state;
+
+    if (filter) {
+      return contacts.filter(el => {
+        return el.name.toLowerCase().includes(filter.toLowerCase());
+      })
+    } else {
+      return contacts;
+    }
+}
 
   //  checkContactsForFilteredItems = () => {
   //   const FilteredList = this.state.contacts.filter(el => el.name.includes(this.state.filter))
@@ -80,13 +92,11 @@ class App extends React.Component {
         <Form onSubmit={this.SubmitContactToList} />
         <h2 className="display-cotnact-box__heading">Contacts</h2>
         <Filter
-          contacts={this.state.contacts}
           filter={this.state.filter}
-          onChange={this.getFilteredData}
+          onChange={this.setFilteredData}
         />
-        <List
-          contacts={this.state.contacts}
-          filteredData={this.state.filter}
+        <List 
+          filteredData={this.getfilteredData()}
           onClick={this.deleteContact}
         />
       </Section>

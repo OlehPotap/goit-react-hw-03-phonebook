@@ -1,14 +1,19 @@
 import ContactsListItem from './ContactsListItem';
 import PropTypes from 'prop-types';
 
-const List = ({ contacts, filteredData, onClick }) => {
+const List = ({ filteredData, onClick }) => {
   return (
     <ol className="list">
-      <ContactsListItem
-        contacts={contacts}
-        filteredData={filteredData}
-        onClick={onClick}
-      />
+      {filteredData.map(el => {
+        return (
+          <ContactsListItem
+            key={el.id}
+            onClick={onClick}
+            name={el.name}
+            number={el.number}
+          />
+        );
+      })}
     </ol>
   );
 };
@@ -22,7 +27,6 @@ List.propTypes = {
     })
   ),
 
-  filteredData: PropTypes.string,
   onClick: PropTypes.func,
 };
 

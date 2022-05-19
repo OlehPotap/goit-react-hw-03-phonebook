@@ -33,8 +33,8 @@ class Form extends React.Component {
   };
 
   render() {
-    const { name, number } = this.state;
-    return (
+  const {name, number} = this.state;
+      return (
       <div className={styles.box}>
         <form
           className={styles.form}
